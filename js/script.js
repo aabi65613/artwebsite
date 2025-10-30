@@ -53,32 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.documentElement.style.scrollBehavior = 'smooth';
     
     console.log('Joydev Bala Art Gallery - Website Loaded Successfully!');
+    console.log('Scroll animations powered by AOS library - repeating on scroll!');
 });
 
-
-/* ============================================ */
-/* FARMER MOTION FEATURE */
-/* Animated farmer character walking across the page */
-/* ============================================ */
-document.addEventListener('DOMContentLoaded', function() {
-    const farmer = document.getElementById('farmer');
-    
-    if (farmer) {
-        // Ensure the animation runs smoothly
-        farmer.style.willChange = 'transform, left';
-        
-        // Optional: Add interactivity - farmer stops when user hovers over it
-        farmer.addEventListener('mouseenter', function() {
-            farmer.style.animationPlayState = 'paused';
-        });
-        
-        farmer.addEventListener('mouseleave', function() {
-            farmer.style.animationPlayState = 'running';
-        });
-        
-        console.log('Farmer motion feature activated!');
-    }
-});
 
 /* ============================================ */
 /* FARMER MOTION FEATURE */

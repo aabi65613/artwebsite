@@ -121,7 +121,8 @@
         AOS.init({
             // Global settings:
             duration: 1000, // values from 0 to 3000, with step 50ms
-            once: true, // whether animation should happen only once - while scrolling down
+            once: false, // Animation repeats every time element scrolls into view
+            mirror: true, // Animation plays when scrolling up and down
         });
     </script>
 </body>
