@@ -74,7 +74,7 @@ function HeroSection() {
 }
 
 // Gallery Card Component
-function GalleryCard({ title, image, delay }) {
+function GalleryCard({ title, image, description, delay }) {
   return (
     <motion.div
       className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition"
@@ -94,7 +94,7 @@ function GalleryCard({ title, image, delay }) {
       <div className="p-6">
         <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
         <p className="text-gray-400 text-sm">
-          A stunning piece of digital art showcasing modern design principles.
+          {description}
         </p>
       </div>
     </motion.div>
@@ -103,13 +103,14 @@ function GalleryCard({ title, image, delay }) {
 
 // Gallery Section Component
 function GallerySection() {
+  // Extracted image file names and descriptions from the old index.html and GitHub Pages check
   const artworks = [
-    { title: 'Painting 1', image: 'images/image1.jpg' },
-    { title: 'Painting 2', image: 'images/image2.jpg' },
-    { title: 'Painting 3', image: 'images/image3.jpg' },
-    { title: 'Painting 4', image: 'images/image4.jpg' },
-    { title: 'Painting 5', image: 'images/image5.jpg' },
-    { title: 'Painting 6', image: 'images/image6.jpg' },
+    { title: 'Painting 1', image: 'images/image1.jpg', description: 'Artist - Joydev Bala | Title - Outrage | Medium - Acrylic on Canvas' },
+    { title: 'Painting 2', image: 'images/image2.jpg', description: 'Artist - Joydev Bala | Title - Love | Medium - Acrylic on Canvas' },
+    { title: 'Painting 3', image: 'images/image3.jpg', description: 'Artist - Joydev Bala | Title - Mother and Child | Medium - Acrylic on Canvas' },
+    { title: 'Painting 4', image: 'images/image4.jpg', description: 'Artist - Joydev Bala | Title - Durga | Medium - Acrylic on Canvas | Size - 24"x24"' },
+    { title: 'Painting 5', image: 'images/image5.jpg', description: 'Artist - Joydev Bala | Title - Angel | Medium - Acrylic on Canvas' },
+    { title: 'Painting 6', image: 'images/image6.jpg', description: 'Artist - Joydev Bala | Title - Flute Player | Medium - Acrylic on Canvas' },
   ];
 
   return (
@@ -129,6 +130,7 @@ function GallerySection() {
               key={i} 
               title={art.title} 
               image={art.image}
+              description={art.description} // Pass description
               delay={i * 0.1}
             />
           ))}
