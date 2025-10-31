@@ -170,7 +170,7 @@ function AboutSection() {
           >
             {sentence}.
           </motion.p>
-        ))}
+        ))} 
       </div>
     </motion.section>
   );
