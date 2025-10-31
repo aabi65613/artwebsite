@@ -48,7 +48,7 @@ function HeroSection() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          Welcome to My Art Gallery
+          Joydev Bala Art Gallery
         </motion.h2>
         <motion.p 
           className="text-xl text-gray-300 mb-8"
@@ -56,7 +56,7 @@ function HeroSection() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          Discover stunning digital and traditional artwork
+          artwork is my survival oxygen
         </motion.p>
         <motion.button 
           className="px-8 py-3 bg-yellow-500 text-black font-bold rounded-lg hover:bg-yellow-400 transition"
@@ -83,8 +83,13 @@ function GalleryCard({ title, image, delay }) {
       transition={{ delay, duration: 0.6 }}
       whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(0,0,0,0.5)' }}
     >
-      <div className="w-full h-48 bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-        <span className="text-white text-4xl font-bold">{image}</span>
+      <div className="w-full h-48 flex items-center justify-center">
+        <img 
+          src={image} 
+          alt={title} 
+          className="w-full h-full object-cover" 
+          onError={(e) => { e.target.onerror = null; e.target.src="/images/placeholder.jpg" }} // Fallback for missing images
+        />
       </div>
       <div className="p-6">
         <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
@@ -99,12 +104,12 @@ function GalleryCard({ title, image, delay }) {
 // Gallery Section Component
 function GallerySection() {
   const artworks = [
-    { title: 'Digital Dreams', image: '🎨' },
-    { title: 'Abstract Harmony', image: '🌈' },
-    { title: 'Modern Vision', image: '✨' },
-    { title: 'Creative Flow', image: '🎭' },
-    { title: 'Artistic Expression', image: '🖼️' },
-    { title: 'Color Symphony', image: '🎪' },
+    { title: 'Painting 1', image: 'images/image1.jpg' },
+    { title: 'Painting 2', image: 'images/image2.jpg' },
+    { title: 'Painting 3', image: 'images/image3.jpg' },
+    { title: 'Painting 4', image: 'images/image4.jpg' },
+    { title: 'Painting 5', image: 'images/image5.jpg' },
+    { title: 'Painting 6', image: 'images/image6.jpg' },
   ];
 
   return (
@@ -116,7 +121,7 @@ function GallerySection() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          Featured Artworks
+          Gallery Collection
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {artworks.map((art, i) => (
@@ -135,6 +140,8 @@ function GallerySection() {
 
 // About Section Component
 function AboutSection() {
+  const bioText = "I am Joydev Bala, a professional painter from Kolkata. After passing out from the Indian College of Art and Draftsmanship under Rabindra Bharati University College in 2000, I am still alive with my artwork (painting). In creating my artworks, showing environmental awareness in lifestyle, loving society, protecting the green, de-polluting the beautiful environment of the earth, not wasting water and maintaining communal harmony have repeatedly been expressed. I use flowers and birds as decorations in my paintings. I continue to try my painting scientifically. My artworks have lines, textures, a style of my own and an Indian feel to my paintings. To date I have held around 21 solo exhibitions and over 200 group exhibitions. Also, I have been able to do many exhibitions and art workshops in the presence of many good people in the country and abroad. Many people from home and abroad have collected my paintings. With the blessing of my parents, Gurudev’s love, I want to draw like this all my life. So artworks is my survival oxygen.";
+  
   return (
     <motion.section 
       className="py-20 bg-gray-900 px-6"
@@ -149,27 +156,19 @@ function AboutSection() {
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          About Me
+          About the Artist
         </motion.h2>
-        <motion.p 
-          className="text-gray-300 text-lg leading-relaxed mb-6"
-          initial={{ x: 50, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
-          I am a passionate artist dedicated to creating stunning visual experiences. 
-          With years of experience in digital art and design, I bring creativity and 
-          innovation to every project.
-        </motion.p>
-        <motion.p 
-          className="text-gray-300 text-lg leading-relaxed"
-          initial={{ x: 50, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-        >
-          My work spans across multiple mediums, combining traditional techniques 
-          with modern digital tools to create unique and captivating pieces.
-        </motion.p>
+        {bioText.split('. ').map((sentence, index) => (
+          <motion.p 
+            key={index}
+            className="text-gray-300 text-lg leading-relaxed mb-4"
+            initial={{ x: 50, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ delay: index * 0.1, duration: 0.6 }}
+          >
+            {sentence}.
+          </motion.p>
+        ))}
       </div>
     </motion.section>
   );
@@ -193,6 +192,12 @@ function ContactSection() {
         >
           Get In Touch
         </motion.h2>
+        <div className="text-gray-300 text-xl space-y-4 mb-8">
+            <p><i className="fas fa-phone-alt mr-2"></i> 9434973681</p>
+            <p><a href="mailto:joydev.bala@gmail.com" className="hover:text-yellow-500 transition"><i className="fas fa-envelope mr-2"></i> joydev.bala@gmail.com</a></p>
+            <p><i className="fas fa-camera mr-2"></i> @JOYDEB8865</p>
+            <p><a href="https://www.facebook.com/joydeb.bala2" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-500 transition"><i className="fab fa-facebook mr-2"></i> joydeb.bala2 (Facebook)</a></p>
+        </div>
         <motion.form 
           className="space-y-6"
           initial={{ opacity: 0 }}
@@ -232,7 +237,7 @@ function ContactSection() {
 function Footer() {
   return (
     <footer className="bg-gray-950 text-gray-400 text-center py-8">
-      <p>&copy; 2025 Art Showcase. All rights reserved.</p>
+      <p>&copy; 2025 Joydev Bala Art Gallery. All rights reserved.</p>
       <div className="flex justify-center gap-6 mt-4">
         {['Facebook', 'Instagram', 'Twitter'].map((social, i) => (
           <motion.a 
