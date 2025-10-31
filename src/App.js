@@ -1,48 +1,57 @@
-// Navigation Component (replace the existing Navigation() in src/App.js)
-function Navigation() {
-  const navItems = [
-    { label: "Portfolio", target: "portfolio" },
-    { label: "About", target: "about" },
-    { label: "Contact", target: "contact" },
-  ];
+import React, { useRef } from "react";
+import "./App.css";
 
-  const handleScroll = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+function App() {
+  const aboutRef = useRef(null);
+  const portfolioRef = useRef(null);
+  const contactRef = useRef(null);
+
+  const scrollToSection = (elementRef) => {
+    window.scrollTo({
+      top: elementRef.current.offsetTop,
+      behavior: "smooth",
+    });
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-black bg-opacity-80 backdrop-blur-md z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <motion.h1
-          className="text-2xl font-bold text-white"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          ART SHOWCASE
-        </motion.h1>
-
-        <ul className="flex gap-8 text-white">
-          {navItems.map((item, i) => (
-            <motion.li
-              key={i}
-              whileHover={{ scale: 1.06 }}
-              className="cursor-pointer select-none"
-            >
-              <button
-                onClick={() => handleScroll(item.target)}
-                className="bg-transparent text-white px-2 py-1 focus:outline-none"
-                aria-label={`Scroll to ${item.label}`}
-              >
-                {item.label}
-              </button>
-            </motion.li>
-          ))}
+    <div className="App">
+      {/* Navigation Bar */}
+      <nav className="navbar">
+        <ul>
+          <li onClick={() => scrollToSection(aboutRef)}>About</li>
+          <li onClick={() => scrollToSection(portfolioRef)}>Portfolio</li>
+          <li onClick={() => scrollToSection(contactRef)}>Contact</li>
         </ul>
-      </div>
-    </nav>
-  );
-}
+      </nav>
+
+      {/* Hero / Top Section */}
+      <header className="hero">
+        <h1>Welcome to My Art Website</h1>
+        <p>Explore my creativity, works & passion.</p>
+      </header>
+
+      {/* About Section */}
+      <section ref={aboutRef} id="about" className="section about">
+        <h2>About Me</h2>
+        <p>
+          Hi, I’m an artist passionate about creating unique designs and artwork.
+          I love expressing emotions through visuals and storytelling.
+        </p>
+
+        {/* Bio part */}
+        <div className="bio">
+          <h3>My Bio</h3>
+          <p>
+            I started my art journey with sketching and gradually moved into
+            digital artwork. I enjoy exploring different styles and forms of
+            creativity.
+          </p>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <section ref={portfolioRef} id="portfolio" className="section portfolio">
+        <h2>My Portfolio</h2>
+        <p>Here are some of my best works and creative projects.</p>
+
+        <div className="portfolio-gallery">
