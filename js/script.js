@@ -1,6 +1,6 @@
 /* ============================================ */
 /* JOYDEV BALA ART GALLERY - JAVASCRIPT */
-/* This file handles the image modal (popup) functionality */
+/* This file handles the image modal (popup) functionality and scroll animations */
 /* ============================================ */
 
 /**
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /* ============================================ */
-/* SCROLL-BASED TEXT REVEAL ANIMATION */
+/* SEQUENTIAL SCROLL-BASED TEXT REVEAL ANIMATION */
 /* ============================================ */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -92,48 +92,42 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to check if an element is in the viewport
     function isElementInViewport(el) {
         const rect = el.getBoundingClientRect();
-        return (
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.left >= 0 &&
-            rect.bottom >= 0 &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
+        const viewportHeight = (window.innerHeight || document.documentElement.clientHeight);
+        // Trigger the reveal when the element is 80% up the screen
+        return rect.top < viewportHeight * 0.8;
     }
 
-    // Function to handle the reveal animation
-    function revealTextOnScroll() {
+    // Function to handle the sequential reveal animation on scroll
+    function sequentialRevealOnScroll() {
         if (!aboutSection) return;
 
-        // Check if the about section is visible
-        const sectionRect = aboutSection.getBoundingClientRect();
-        const sectionVisible = sectionRect.top < (window.innerHeight - 100);
-
-        if (sectionVisible) {
-            textLines.forEach((line, index) => {
-                // Use a small delay for the pop-up effect
-                const delay = index * 100; // 100ms delay between each line
-
-                // Only reveal if not already visible
-                if (!line.classList.contains('is-visible')) {
-                    setTimeout(() => {
-                        line.classList.add('is-visible');
-                    }, delay);
+        // Iterate through all lines
+        textLines.forEach((line, index) => {
+            // Only reveal if not already visible AND the previous line is visible (for sequential effect)
+            if (!line.classList.contains('is-visible')) {
+                const previousLineIsVisible = index === 0 || textLines[index - 1].classList.contains('is-visible');
+                
+                if (previousLineIsVisible && isElementInViewport(line)) {
+                    // Reveal the line immediately
+                    line.classList.add('is-visible');
                 }
-            });
-            // Remove the scroll listener once all lines are visible
-            if (Array.from(textLines).every(line => line.classList.contains('is-visible'))) {
-                 window.removeEventListener('scroll', revealTextOnScroll);
             }
+        });
+        
+        // Optional: Remove the scroll listener once all lines are visible
+        if (Array.from(textLines).every(line => line.classList.contains('is-visible'))) {
+             window.removeEventListener('scroll', sequentialRevealOnScroll);
         }
     }
 
-    // Initial check and set up scroll listener
-    revealTextOnScroll();
-    window.addEventListener('scroll', revealTextOnScroll);
+    // Set up scroll listener
+    window.addEventListener('scroll', sequentialRevealOnScroll);
+    // Initial check to reveal any lines already in view on load
+    sequentialRevealOnScroll();
 });
 
 /* ============================================ */
-/* COLOR-CHANGING BORDER EFFECT ON CLICK/SCROLL */
+/* GALLERY ITEM INTERACTIVITY (Click/Hover) */
 /* ============================================ */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -152,26 +146,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Function to apply 'in-view' class for continuous border animation on scroll
-    function checkGalleryItemsVisibility() {
-        galleryItems.forEach(item => {
-            const rect = item.getBoundingClientRect();
-            // Check if the item is at least partially in the viewport
-            const isVisible = (
-                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.bottom >= 0
-            );
-
-            if (isVisible) {
-                item.classList.add('in-view');
-            } else {
-                // Optionally remove the class when out of view to save resources
-                item.classList.remove('in-view');
-            }
-        });
-    }
-
-    // Initial check and set up scroll listener
-    checkGalleryItemsVisibility();
-    window.addEventListener('scroll', checkGalleryItemsVisibility);
+    // Remove the scroll-based border glow logic as per user request to revert to original style
+    // The hover effect is handled by CSS.
 });
