@@ -80,3 +80,98 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Farmer motion feature activated!');
     }
 });
+
+/* ============================================ */
+/* SCROLL-BASED TEXT REVEAL ANIMATION */
+/* ============================================ */
+
+document.addEventListener('DOMContentLoaded', function() {
+    const aboutSection = document.querySelector('.about-section');
+    const textLines = document.querySelectorAll('.text-reveal-line');
+    
+    // Function to check if an element is in the viewport
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.left >= 0 &&
+            rect.bottom >= 0 &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    // Function to handle the reveal animation
+    function revealTextOnScroll() {
+        if (!aboutSection) return;
+
+        // Check if the about section is visible
+        const sectionRect = aboutSection.getBoundingClientRect();
+        const sectionVisible = sectionRect.top < (window.innerHeight - 100);
+
+        if (sectionVisible) {
+            textLines.forEach((line, index) => {
+                // Use a small delay for the pop-up effect
+                const delay = index * 100; // 100ms delay between each line
+
+                // Only reveal if not already visible
+                if (!line.classList.contains('is-visible')) {
+                    setTimeout(() => {
+                        line.classList.add('is-visible');
+                    }, delay);
+                }
+            });
+            // Remove the scroll listener once all lines are visible
+            if (Array.from(textLines).every(line => line.classList.contains('is-visible'))) {
+                 window.removeEventListener('scroll', revealTextOnScroll);
+            }
+        }
+    }
+
+    // Initial check and set up scroll listener
+    revealTextOnScroll();
+    window.addEventListener('scroll', revealTextOnScroll);
+});
+
+/* ============================================ */
+/* COLOR-CHANGING BORDER EFFECT ON CLICK/SCROLL */
+/* ============================================ */
+
+document.addEventListener('DOMContentLoaded', function() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    // Function to handle the click effect
+    galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Apply a temporary 'clicked' class for visual feedback
+            item.classList.add('clicked');
+            
+            // Remove the class after a short delay
+            setTimeout(() => {
+                item.classList.remove('clicked');
+            }, 300); // 300ms duration for the click effect
+        });
+    });
+
+    // Function to apply 'in-view' class for continuous border animation on scroll
+    function checkGalleryItemsVisibility() {
+        galleryItems.forEach(item => {
+            const rect = item.getBoundingClientRect();
+            // Check if the item is at least partially in the viewport
+            const isVisible = (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.bottom >= 0
+            );
+
+            if (isVisible) {
+                item.classList.add('in-view');
+            } else {
+                // Optionally remove the class when out of view to save resources
+                item.classList.remove('in-view');
+            }
+        });
+    }
+
+    // Initial check and set up scroll listener
+    checkGalleryItemsVisibility();
+    window.addEventListener('scroll', checkGalleryItemsVisibility);
+});
