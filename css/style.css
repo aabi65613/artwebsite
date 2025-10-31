@@ -369,8 +369,40 @@ body {
 }
 
 .footer-subtitle {
-    color: #39FF14; /* Bright cyan for subtitle */
+    color: #39FF14; /* Bright green for subtitle */
     font-size: 1.1em;
+}
+
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icon-link {
+    color: #39FF14; /* Neon green color */
+    font-size: 2em;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14; /* Neon glow */
+}
+
+.social-icon-link:hover {
+    color: #FF00FF; /* Hover color change for effect */
+    transform: scale(1.2);
+    text-shadow: 0 0 10px #FF00FF, 0 0 20px #FF00FF;
+}
+
+.social-link {
+    color: #39FF14; /* Neon green color for text links */
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 0 0 3px #39FF14;
+}
+
+.social-link:hover {
+    color: #FF00FF;
+    text-shadow: 0 0 5px #FF00FF;
 }
 
 /* ============================================ */
