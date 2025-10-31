@@ -8,7 +8,7 @@ This is a **simple HTML/CSS/JavaScript** website that works on **any computer** 
 
 ## 📁 Project Structure
 
-```
+``` 
 joydev-art-simple/
 ├── index.html          ← Main website file (EDIT THIS)
 ├── css/
