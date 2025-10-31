@@ -63,7 +63,7 @@ body {
     font-size: 3.5em;
     font-weight: bold;
     margin-bottom: 15px;
-    text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 20px #FF00FF, 0 0 40px #FF00FF; /* Neon-like glow */
+    text-shadow: 0 0 5px #b2f5ea, 0 0 10px #b2f5ea, 0 0 20px #0d7377, 0 0 40px #0d7377; /* Light green-like glow */
     transition: all 0.3s ease-in-out;
 }
 
@@ -521,74 +521,26 @@ body {
 /* Glitch Effect for Main Title on Hover (Acidic Bhai-like) */
 /* Glitch Effect for Main Title on Hover (Acidic Bhai-like) */
 @keyframes glitch {
-    0% { text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 20px #FF00FF, 0 0 40px #FF00FF; transform: translate(1px, 1px); }
-    20% { text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 20px #FF00FF, 0 0 40px #FF00FF; transform: translate(-1px, -1px); }
-    40% { text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 20px #FF00FF, 0 0 40px #FF00FF; transform: translate(1px, -1px); }
-    60% { text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 20px #FF00FF, 0 0 40px #FF00FF; transform: translate(-1px, 1px); }
-    80% { text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 20px #FF00FF, 0 0 40px #FF00FF; transform: translate(0px, 0px); }
-    100% { text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 20px #FF00FF, 0 0 40px #FF00FF; transform: translate(1px, 1px); }
+    0% { text-shadow: 0 0 5px #b2f5ea, 0 0 10px #b2f5ea, 0 0 20px #0d7377, 0 0 40px #0d7377; transform: translate(1px, 1px); }
+    20% { text-shadow: 0 0 5px #b2f5ea, 0 0 10px #b2f5ea, 0 0 20px #0d7377, 0 0 40px #0d7377; transform: translate(-1px, -1px); }
+    40% { text-shadow: 0 0 5px #b2f5ea, 0 0 10px #b2f5ea, 0 0 20px #0d7377, 0 0 40px #0d7377; transform: translate(1px, -1px); }
+    60% { text-shadow: 0 0 5px #b2f5ea, 0 0 10px #b2f5ea, 0 0 20px #0d7377, 0 0 40px #0d7377; transform: translate(-1px, 1px); }
+    80% { text-shadow: 0 0 5px #b2f5ea, 0 0 10px #b2f5ea, 0 0 20px #0d7377, 0 0 40px #0d7377; transform: translate(0px, 0px); }
+    100% { text-shadow: 0 0 5px #b2f5ea, 0 0 10px #b2f5ea, 0 0 20px #0d7377, 0 0 40px #0d7377; transform: translate(1px, 1px); }
 }
+
+
 
 /* ============================================ */
-/* FARMER MOTION STYLES */
-/* Professional animated farmer character */
+/* SOCIAL LOGO STYLES */
 /* ============================================ */
-.farmer {
-    position: fixed;
-    bottom: 20px;
-    left: -80px;
-    font-size: 3em;
-    z-index: 999;
-    user-select: none;
-    pointer-events: none;
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
-    animation: farmerWalk 20s linear infinite, farmerBounce 0.6s ease-in-out infinite;
+.social-logo {
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
 }
 
-@keyframes farmerWalk {
-    0% {
-        left: -80px;
-        transform: scaleX(1);
-    }
-    50% {
-        left: calc(100% + 80px); /* Changed to 100% + 80px to make it walk off-screen */
-        transform: scaleX(1);
-    }
-    50.01% {
-        left: calc(100% + 80px);
-        transform: scaleX(-1); /* Flip to walk back */
-    }
-    100% {
-        left: -80px;
-        transform: scaleX(-1);
-    }
-}
-    100% {
-        left: 100vw;
-        transform: scaleX(-1);
-    }
-}
-
-@keyframes farmerBounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-}
-
-/* Responsive farmer size for mobile */
-@media (max-width: 768px) {
-    .farmer {
-        font-size: 2em;
-        bottom: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .farmer {
-        font-size: 1.5em;
-        bottom: 10px;
-    }
+.social-icon-link:hover .social-logo {
+    transform: scale(1.1);
 }
