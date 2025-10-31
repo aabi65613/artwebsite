@@ -55,3 +55,23 @@ function App() {
         <p>Here are some of my best works and creative projects.</p>
 
         <div className="portfolio-gallery">
+          <div className="art-item">🎨 Artwork 1</div>
+          <div className="art-item">🖌️ Artwork 2</div>
+          <div className="art-item">🖼️ Artwork 3</div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section ref={contactRef} id="contact" className="section contact">
+        <h2>Contact Me</h2>
+        <p>Get in touch with me for collaborations or commissions.</p>
+        <p>
+          📞 <a href="tel:9434973681">9434973681</a>
+        </p>
+        <p>📧 youremail@example.com</p>
+      </section>
+    </div>
+  );
+}
+
+export default App;
